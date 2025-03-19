@@ -1,11 +1,3 @@
-# Use the official Nginx image
-FROM nginx:alpine
-
-# Copy your static website files into the Nginx webroot
-COPY . /usr/share/nginx/html
-
-# Expose port 80 for HTTP traffic
-EXPOSE 80
-
-# Start Nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
+FROM alpine:latest
+RUN apk add --no-cache stress
+CMD ["stress", "--cpu", "1", "--vm", "3", "--vm-bytes", "950M", "--timeout", "600s"]
